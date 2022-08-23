@@ -1,0 +1,172 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance;
+    private void Awake()
+    {
+        if(GameManager.instance != null)
+        {
+            Destroy(gameObject);
+            Destroy(player.gameObject);
+            Destroy(floatingTextManager.gameObject);
+            Destroy(hud.gameObject);
+            Destroy(menu.gameObject);
+            return;
+        }
+        instance = this;
+        SceneManager.sceneLoaded += loadState;
+        SceneManager.sceneLoaded += onSceneLoaded;
+    }
+
+    // Ressources
+    public List<Sprite> playerSprites;
+    public List<Sprite> weaponSprites;
+    public List<int> weaponPrices;
+    public List<int> xpTable;
+    public List<int> hitpoints;
+
+
+    // References
+    public Player player;
+    public Weapon weapon;
+    public FloatingTextManager floatingTextManager;
+    public RectTransform hitpointBar;
+    public GameObject hud;
+    public GameObject menu;
+    public Animator deathMenuAnim;
+
+    // Logic
+    public int pesos;
+    public int experience;
+
+    //floating text
+    public void showText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    {
+        floatingTextManager.show(msg, fontSize, color, position, motion, duration);
+    }
+
+    // Upgrade Weapon
+    public bool tryUpgradeWeapon()
+    {
+        // is the weapon max level?
+        if (weaponPrices.Count <= weapon.weaponLevel)
+        {
+            return false;
+        }
+
+        if (pesos >= weaponPrices[weapon.weaponLevel])
+        {
+            pesos -= weaponPrices[weapon.weaponLevel];
+            weapon.upgradeWeapon();
+            return true;
+        }
+
+        return false;
+    }
+
+    // Hitpoint Bar
+    public void onHitpointChange()
+    {
+        float ratio = (float)player.hitpoint / player.maxHitpoint;
+        hitpointBar.localScale = new Vector3(1, ratio, 1);
+    }
+
+    // Experience System
+    public int getCurrentLevel()
+    {
+        int r = 0;
+        int add = 0;
+
+        while(experience >= add)
+        {
+            add += xpTable[r];
+            r++;
+
+            if (r == xpTable.Count)
+            {
+                return r;
+            }
+        }
+
+        return r;
+    }
+    public int getXpToLevel(int level)
+    {
+        int r = 0;
+        int xp = 0;
+
+        while(r < level)
+        {
+            xp += xpTable[r];
+            r++;
+        }
+
+        return xp;
+    }
+    public void grantXp(int xp)
+    {
+        int currLevel = getCurrentLevel();
+        experience += xp;
+        if (currLevel < getCurrentLevel())
+        {
+            onLevelUp();
+        }
+
+    }
+    public void onLevelUp()
+    {
+        player.onLevelUp();
+        onHitpointChange();
+    }
+
+    //On Scene Loaded
+    public void onSceneLoaded(Scene s, LoadSceneMode mode)
+    {
+        player.transform.position = GameObject.Find("Spawnpoint").transform.position;
+    }
+
+    //Death Menu and Respawn
+    public void respawn()
+    {
+        deathMenuAnim.SetTrigger("Hide");
+        SceneManager.LoadScene("Main");
+        player.respawn();
+    }
+
+    // Save/Load State
+    public void saveState()
+    {
+        string s = "";
+
+        s += "0" + "|";
+        s += pesos.ToString() + "|";
+        s += experience.ToString() + "|";
+        s += weapon.weaponLevel.ToString();
+
+        PlayerPrefs.SetString("SaveState", s);
+    }
+    public void loadState(Scene s, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= loadState;
+
+        if (!PlayerPrefs.HasKey("SaveState"))
+        {
+            return;
+        }
+        string[] data = PlayerPrefs.GetString("SaveState").Split('|');
+
+        // Change Player skin
+        pesos = int.Parse(data[1]);
+        experience = int.Parse(data[2]);
+        player.onLevelUp();
+        // Change Weapon level
+        weapon.setWeaponLevel(int.Parse(data[3]));
+        showText("The chest in the buttom left cornor is the menu button, press it to open the menu.", 15, Color.white, transform.position + new Vector3(0, 0.24f, 0), Vector3.zero, 10.0f);
+
+    }
+
+}
