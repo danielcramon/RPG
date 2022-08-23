@@ -18,8 +18,8 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        SceneManager.sceneLoaded += loadState;
         SceneManager.sceneLoaded += onSceneLoaded;
+        startMenuAnim.SetTrigger("Show");
     }
 
     // Ressources
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public List<int> weaponPrices;
     public List<int> xpTable;
     public List<int> hitpoints;
+    private bool gameLoaded = false;
 
 
     // References
@@ -38,6 +39,9 @@ public class GameManager : MonoBehaviour
     public GameObject hud;
     public GameObject menu;
     public Animator deathMenuAnim;
+    public Animator startMenuAnim;
+    public Animator controlsMenuAnim;
+    public Animator optionsMenuAnim;
 
     // Logic
     public int pesos;
@@ -137,6 +141,46 @@ public class GameManager : MonoBehaviour
         player.respawn();
     }
 
+    public void playGame()
+    {
+        if (!gameLoaded)
+        {
+            loadState();
+        }
+        startMenuAnim.SetTrigger("Hide");
+    }
+
+    public void options()
+    {
+        startMenuAnim.SetTrigger("Hide");
+        optionsMenuAnim.SetTrigger("Show");
+    }
+
+    public void controls()
+    {
+        startMenuAnim.SetTrigger("Hide");
+        controlsMenuAnim.SetTrigger("Show");
+    }
+
+    public void returnFromOptions() 
+    {
+        startMenuAnim.SetTrigger("Show");
+        optionsMenuAnim.SetTrigger("Hide");
+    }
+    public void returnFromControls()
+    {
+        startMenuAnim.SetTrigger("Show");
+        controlsMenuAnim.SetTrigger("Hide");
+    }
+    public void startMenu()
+    {
+        deathMenuAnim.SetTrigger("Hide");
+        startMenuAnim.SetTrigger("Show");
+        SceneManager.LoadScene("Main");
+        player.respawn();
+    }
+
+
     // Save/Load State
     public void saveState()
     {
@@ -149,9 +193,8 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetString("SaveState", s);
     }
-    public void loadState(Scene s, LoadSceneMode mode)
+    public void loadState()
     {
-        SceneManager.sceneLoaded -= loadState;
 
         if (!PlayerPrefs.HasKey("SaveState"))
         {
@@ -166,7 +209,7 @@ public class GameManager : MonoBehaviour
         // Change Weapon level
         weapon.setWeaponLevel(int.Parse(data[3]));
         showText("The chest in the buttom left cornor is the menu button, press it to open the menu.", 15, Color.white, transform.position + new Vector3(0, 0.24f, 0), Vector3.zero, 10.0f);
-
+        gameLoaded = true;
     }
 
 }
