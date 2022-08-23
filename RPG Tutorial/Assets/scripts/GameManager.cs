@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         SceneManager.sceneLoaded += onSceneLoaded;
         startMenuAnim.SetTrigger("Show");
+        player.canMove = false;
     }
 
     // Ressources
@@ -155,6 +156,7 @@ public class GameManager : MonoBehaviour
             loadState();
         }
         startMenuAnim.SetTrigger("Hide");
+        player.canMove = true;
     }
 
     public void options()
@@ -185,6 +187,7 @@ public class GameManager : MonoBehaviour
         startMenuAnim.SetTrigger("Show");
         SceneManager.LoadScene("Main");
         player.respawn();
+        player.canMove = false;
     }
 
 
@@ -215,7 +218,7 @@ public class GameManager : MonoBehaviour
         player.onLevelUp();
         // Change Weapon level
         weapon.setWeaponLevel(int.Parse(data[3]));
-        showText("The chest in the buttom left cornor is the menu button, press it to open the menu.", 15, Color.white, transform.position + new Vector3(0, 0.24f, 0), Vector3.zero, 10.0f, false);
+        showText("The chest in the buttom left cornor is the menu button, press it to open the menu.", 15, Color.white, transform.position + new Vector3(0, 0.24f, 0), Vector3.zero, 6.0f, false);
         gameLoaded = true;
     }
 
