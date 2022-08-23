@@ -45,14 +45,14 @@ public class Player : Mover
 
         if (hitpoint + healingAmmount > maxHitpoint)
         {
-            GameManager.instance.showText("+" + (maxHitpoint - hitpoint).ToString() + "hp", 25, Color.green, transform.position, Vector3.up * 30, 1.0f);
+            GameManager.instance.showText("+" + (maxHitpoint - hitpoint).ToString() + "hp", 25, Color.green, transform.position, Vector3.up * 30, 1.0f, false);
             hitpoint = maxHitpoint;
             GameManager.instance.onHitpointChange();
         }
         else
         {
             hitpoint = hitpoint + healingAmmount;
-            GameManager.instance.showText("+" + healingAmmount.ToString() + "hp", 25, Color.green, transform.position, Vector3.up * 30, 1.0f);
+            GameManager.instance.showText("+" + healingAmmount.ToString() + "hp", 25, Color.green, transform.position, Vector3.up * 30, 1.0f, false);
             GameManager.instance.onHitpointChange();
         }
 

@@ -42,7 +42,7 @@ public class HealingFountain : Collidable
                     lastText = Time.time;
                     float cooldown = healCooldown - (Time.time - lastHeal);
                     int intCooldown = (int)cooldown;
-                    GameManager.instance.showText("You need to wait " + intCooldown.ToString() + " Seconds!", 25, Color.grey, transform.position, Vector3.up * 50, 1.0f);
+                    GameManager.instance.showText("You need to wait " + intCooldown.ToString() + " Seconds!", 25, Color.grey, transform.position, Vector3.up * 50, 1.0f, false);
                 }
                 
             }

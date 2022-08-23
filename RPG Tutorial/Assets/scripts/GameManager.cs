@@ -48,9 +48,16 @@ public class GameManager : MonoBehaviour
     public int experience;
 
     //floating text
-    public void showText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    public void showText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration, bool locked)
     {
-        floatingTextManager.show(msg, fontSize, color, position, motion, duration);
+        if (!locked)
+        {
+            floatingTextManager.show(msg, fontSize, color, position, motion, duration);
+        }
+        else
+        {
+            floatingTextManager.showLocked(msg, fontSize, color, position, motion, duration);
+        }
     }
 
     // Upgrade Weapon
@@ -208,7 +215,7 @@ public class GameManager : MonoBehaviour
         player.onLevelUp();
         // Change Weapon level
         weapon.setWeaponLevel(int.Parse(data[3]));
-        showText("The chest in the buttom left cornor is the menu button, press it to open the menu.", 15, Color.white, transform.position + new Vector3(0, 0.24f, 0), Vector3.zero, 10.0f);
+        showText("The chest in the buttom left cornor is the menu button, press it to open the menu.", 15, Color.white, transform.position + new Vector3(0, 0.24f, 0), Vector3.zero, 10.0f, false);
         gameLoaded = true;
     }
 

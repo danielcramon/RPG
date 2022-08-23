@@ -9,6 +9,6 @@ public class Crate : Fighter
     {
         Destroy(gameObject);
         GameManager.instance.pesos += pesosAmount;
-        GameManager.instance.showText("+" + pesosAmount + "pesos!", 25, Color.yellow, transform.position, Vector3.up * 25, 1.5f);
+        GameManager.instance.showText("+" + pesosAmount + "pesos!", 25, Color.yellow, transform.position, Vector3.up * 25, 1.5f, false);
     }
 }
