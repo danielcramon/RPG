@@ -50,5 +50,22 @@ public class FloatingTextManager : MonoBehaviour
 
 
     }
-    
+
+    public void showLocked(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    {
+        FloatingText floatingText = getFloatingText();
+
+        floatingText.txt.text = msg;
+        floatingText.txt.fontSize = fontSize;
+        floatingText.txt.color = color;
+        floatingText.go.transform.position = Camera.main.WorldToScreenPoint(position); //transfer world space to screen space so we can use it in the UI
+        floatingText.motion = motion;
+        floatingText.duration = duration;
+        floatingText.origionalPosition = position;
+
+        floatingText.showLocked();
+
+
+    }
+
 }

@@ -54,9 +54,9 @@ TagManager:
   - name: Weapon
     uniqueID: 279684711
     locked: 0
-  - name: Front
-    uniqueID: 3503131477
-    locked: 0
   - name: interactable
     uniqueID: 1830356393
+    locked: 0
+  - name: Front
+    uniqueID: 3503131477
     locked: 0

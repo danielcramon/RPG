@@ -21,7 +21,7 @@ public class NPCTextPerson : Collidable
             if (Time.time - lastShout > cooldown)
             {
                 lastShout = Time.time;
-                GameManager.instance.showText(message, 15, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown);
+                GameManager.instance.showText(message, 15, Color.white, transform.position + new Vector3(0, 0.16f, 0), Vector3.zero, cooldown, true);
             }
         }
        
