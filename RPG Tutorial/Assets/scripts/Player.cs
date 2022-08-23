@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Mover
 {
     private SpriteRenderer spriteRenderer;
-    private bool isAlive = true;
+    public bool canMove;
     protected override void Start()
     {
         base.Start();
@@ -13,7 +13,7 @@ public class Player : Mover
     }
     protected override void receiveDamage(Damage dmg)
     {
-        if (!isAlive)
+        if (!canMove)
         {
             return;
         }
@@ -25,7 +25,7 @@ public class Player : Mover
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        if (isAlive)
+        if (canMove)
         {
             updateMotor(new Vector3(x, y, 0));
         }
@@ -61,13 +61,13 @@ public class Player : Mover
     protected override void death()
     {
         GameManager.instance.deathMenuAnim.SetTrigger("Show");
-        isAlive = false;
+        canMove = false;
     }
     public void respawn()
     {
         hitpoint = maxHitpoint;
         GameManager.instance.onHitpointChange();
-        isAlive = true;
+        canMove = true;
         lastImmune = Time.time;
         pushDirection = Vector3.zero;
     }
