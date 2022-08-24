@@ -6,6 +6,7 @@ public class Player : Mover
 {
     private SpriteRenderer spriteRenderer;
     public bool canMove;
+    public bool isDead = false;
     protected override void Start()
     {
         base.Start();
@@ -62,6 +63,7 @@ public class Player : Mover
     {
         GameManager.instance.deathMenuAnim.SetTrigger("Show");
         canMove = false;
+        isDead = true;
     }
     public void respawn()
     {
@@ -70,5 +72,6 @@ public class Player : Mover
         canMove = true;
         lastImmune = Time.time;
         pushDirection = Vector3.zero;
+        isDead = false;
     }
 }

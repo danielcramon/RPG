@@ -174,12 +174,16 @@ public class GameManager : MonoBehaviour
     {
         startMenuAnim.SetTrigger("Hide");
         optionsMenuAnim.SetTrigger("Show");
+        optionsMenuObject.isActive = true;
+        startMenuObject.isActive = false;
     }
 
     public void showControls()
     {
         startMenuAnim.SetTrigger("Hide");
         controlsMenuAnim.SetTrigger("Show");
+        controlsMenuObject.isActive = true;
+        startMenuObject.isActive = false;
     }
 
     public void returnFromOptions() 
@@ -194,7 +198,7 @@ public class GameManager : MonoBehaviour
     }
     public void showStartMenu()
     {
-        if(!player.canMove)
+        if(player.isDead)
         {
             deathMenuAnim.SetTrigger("Hide");
             startMenuAnim.SetTrigger("Show");

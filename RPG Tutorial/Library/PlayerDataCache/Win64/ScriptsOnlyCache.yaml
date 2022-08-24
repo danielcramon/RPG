@@ -22,7 +22,6 @@ ScriptsOnlyBuild:
     - Weapon
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
-    - UnityEditor.U2D.Animation.SkinningCachePersistentState
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridBrushEditor
@@ -85,27 +84,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 590}
     - Class: 114
-      Script: {instanceID: 11524}
+      Script: {instanceID: 11532}
     - Class: 114
-      Script: {instanceID: 11720}
+      Script: {instanceID: 11728}
     - Class: 114
-      Script: {instanceID: 12292}
+      Script: {instanceID: 12300}
     - Class: 114
-      Script: {instanceID: 12884}
+      Script: {instanceID: 12892}
     - Class: 114
-      Script: {instanceID: 13356}
+      Script: {instanceID: 13364}
     - Class: 114
-      Script: {instanceID: 13486}
+      Script: {instanceID: 13494}
     - Class: 114
-      Script: {instanceID: 14024}
+      Script: {instanceID: 14032}
     - Class: 114
-      Script: {instanceID: 14226}
+      Script: {instanceID: 14234}
     - Class: 114
-      Script: {instanceID: 14312}
+      Script: {instanceID: 14320}
     - Class: 114
-      Script: {instanceID: 14398}
+      Script: {instanceID: 14406}
     - Class: 114
-      Script: {instanceID: 14410}
+      Script: {instanceID: 14418}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -154,47 +153,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11244}
     - Class: 114
-      Script: {instanceID: 11268}
+      Script: {instanceID: 11276}
     - Class: 114
-      Script: {instanceID: 11370}
+      Script: {instanceID: 11378}
     - Class: 114
-      Script: {instanceID: 11614}
-    - Class: 114
-      Script: {instanceID: 11712}
+      Script: {instanceID: 11622}
     - Class: 114
       Script: {instanceID: 11720}
     - Class: 114
-      Script: {instanceID: 11866}
+      Script: {instanceID: 11728}
     - Class: 114
-      Script: {instanceID: 12292}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 12482}
+      Script: {instanceID: 12300}
     - Class: 114
-      Script: {instanceID: 12498}
+      Script: {instanceID: 12490}
     - Class: 114
-      Script: {instanceID: 12884}
+      Script: {instanceID: 12506}
     - Class: 114
-      Script: {instanceID: 13002}
+      Script: {instanceID: 12892}
     - Class: 114
-      Script: {instanceID: 13372}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13442}
+      Script: {instanceID: 13380}
     - Class: 114
-      Script: {instanceID: 13550}
+      Script: {instanceID: 13450}
     - Class: 114
-      Script: {instanceID: 13612}
+      Script: {instanceID: 13558}
     - Class: 114
-      Script: {instanceID: 13708}
+      Script: {instanceID: 13620}
     - Class: 114
-      Script: {instanceID: 13780}
+      Script: {instanceID: 13716}
     - Class: 114
-      Script: {instanceID: 14226}
+      Script: {instanceID: 13788}
     - Class: 114
-      Script: {instanceID: 14312}
+      Script: {instanceID: 14234}
     - Class: 114
-      Script: {instanceID: 14398}
+      Script: {instanceID: 14320}
     - Class: 114
-      Script: {instanceID: 14410}
+      Script: {instanceID: 14406}
+    - Class: 114
+      Script: {instanceID: 14418}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -388,7 +387,7 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
-      Hash: a1cc24078be3a0d25585d3d0bf317468
+      Hash: 15a1547f480596df87d64ddac09e043a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
