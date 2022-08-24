@@ -242,12 +242,12 @@ public class GameManager : MonoBehaviour
         if (optionsMenuObject.isActive)
         {
             optionsMenuAnim.SetTrigger("Hide");
-            startMenuObject.isActive = false;
+            optionsMenuObject.isActive = false;
         }
         if (controlsMenuObject.isActive)
         {
             controlsMenuAnim.SetTrigger("Hide");
-            startMenuObject.isActive = false;
+            controlsMenuObject.isActive = false;
         }
     }
 
