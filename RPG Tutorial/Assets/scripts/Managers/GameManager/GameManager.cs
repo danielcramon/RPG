@@ -30,7 +30,11 @@ public class GameManager : MonoBehaviour
     public List<int> weaponPrices;
     public List<int> xpTable;
     public List<int> hitpoints;
+    public List<int> enemyHitpoints;
+    public List<int> bossHitpoints;
     private bool gameLoaded = false;
+    public List<int> bossDamages;
+    public List<int> enemyDamages;
 
 
     // References

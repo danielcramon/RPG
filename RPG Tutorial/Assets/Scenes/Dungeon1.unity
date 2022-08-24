@@ -298,6 +298,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   damage: 2
   pushForce: 6
+  isBoss: 1
 --- !u!61 &148444338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -645,6 +646,7 @@ MonoBehaviour:
   xpValue: 10
   triggerLength: 0.75
   chaseLength: 2
+  isBoss: 1
   filter:
     useTriggers: 0
     useLayerMask: 0
@@ -966,7 +968,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -791835819
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -2170,6 +2172,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   damage: 1
   pushForce: 0
+  isBoss: 0
 --- !u!61 &1107364009
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23028,6 +23031,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   damage: 1
   pushForce: 0
+  isBoss: 0
 --- !u!61 &2040066919
 BoxCollider2D:
   m_ObjectHideFlags: 0
