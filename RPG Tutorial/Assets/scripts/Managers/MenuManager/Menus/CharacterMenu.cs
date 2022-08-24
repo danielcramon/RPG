@@ -64,13 +64,14 @@ public class CharacterMenu : MonoBehaviour
     public void updateMenu()
     {
         // Weapon
-        weaponSprite.sprite = GameManager.instance.weaponSprites[GameManager.instance.weapon.weaponLevel];
         if (GameManager.instance.weapon.weaponLevel == GameManager.instance.weaponPrices.Count)
         {
+            weaponSprite.sprite = GameManager.instance.weaponSprites[GameManager.instance.weapon.weaponLevel];
             upgradeCostText.text = "MAX";
         }
         else
         {
+            weaponSprite.sprite = GameManager.instance.weaponSprites[GameManager.instance.weapon.weaponLevel + 1];
             upgradeCostText.text = GameManager.instance.weaponPrices[GameManager.instance.weapon.weaponLevel].ToString();
         }
         // Meta

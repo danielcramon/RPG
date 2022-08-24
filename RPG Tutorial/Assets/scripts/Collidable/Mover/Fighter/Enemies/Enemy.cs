@@ -14,6 +14,7 @@ public class Enemy : Mover
     private bool collidingWithPlayer;
     private Transform playerTransform;
     private Vector3 startingPosition;
+    public bool isBoss = false;
 
     // Hitbox
     public ContactFilter2D filter;
@@ -26,6 +27,18 @@ public class Enemy : Mover
         playerTransform = GameManager.instance.player.transform;
         startingPosition = transform.position;
         hitbox = transform.GetChild(0).GetComponent<BoxCollider2D>();
+        if (!isBoss)
+        {
+
+            this.hitpoint = GameManager.instance.enemyHitpoints[GameManager.instance.getCurrentLevel() - 1];
+            this.maxHitpoint = GameManager.instance.enemyHitpoints[GameManager.instance.getCurrentLevel() - 1];
+        }
+        else
+        {
+            this.hitpoint = GameManager.instance.bossHitpoints[GameManager.instance.getCurrentLevel() - 1];
+            this.maxHitpoint = GameManager.instance.hitpoints[GameManager.instance.getCurrentLevel() - 1];
+        }
+        
     }
 
     private void FixedUpdate()
