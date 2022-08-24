@@ -16,6 +16,18 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)){
+            /*if (!GameManager.instance.startMenuObject.isActive && GameManager.instance.optionsMenuObject.isActive)
+            {
+                GameManager.instance.returnFromOptions();
+            }
+            else if (!GameManager.instance.startMenuObject.isActive && GameManager.instance.controlsMenuObject.isActive)
+            {
+                GameManager.instance.returnFromControls();
+            }
+            else if (!GameManager.instance.startMenuObject.isActive)
+            {
+                GameManager.instance.showStartMenu();
+            }*/
             if (!GameManager.instance.startMenuObject.isActive)
             {
                 GameManager.instance.showStartMenu();
