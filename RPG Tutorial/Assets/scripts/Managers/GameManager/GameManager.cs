@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += onSceneLoaded;
         startMenuAnim.SetTrigger("Show");
         player.canMove = false;
+        startMenuObject.isActive = true;
     }
 
     // Ressources
@@ -43,6 +44,11 @@ public class GameManager : MonoBehaviour
     public Animator startMenuAnim;
     public Animator controlsMenuAnim;
     public Animator optionsMenuAnim;
+    public Animator mainMenuAnim;
+    public StartMenu startMenuObject;
+    public OptionsMenu optionsMenuObject;
+    public ControlsMenu controlsMenuObject;
+    public CharacterMenu characterMenuObject;
 
     // Logic
     public int pesos;
@@ -157,15 +163,16 @@ public class GameManager : MonoBehaviour
         }
         startMenuAnim.SetTrigger("Hide");
         player.canMove = true;
+        startMenuObject.isActive = false;
     }
 
-    public void options()
+    public void showOptions()
     {
         startMenuAnim.SetTrigger("Hide");
         optionsMenuAnim.SetTrigger("Show");
     }
 
-    public void controls()
+    public void showControls()
     {
         startMenuAnim.SetTrigger("Hide");
         controlsMenuAnim.SetTrigger("Show");
@@ -181,13 +188,70 @@ public class GameManager : MonoBehaviour
         startMenuAnim.SetTrigger("Show");
         controlsMenuAnim.SetTrigger("Hide");
     }
-    public void startMenu()
+    public void showStartMenu()
     {
-        deathMenuAnim.SetTrigger("Hide");
-        startMenuAnim.SetTrigger("Show");
-        SceneManager.LoadScene("Main");
-        player.respawn();
-        player.canMove = false;
+        if(!player.canMove)
+        {
+            deathMenuAnim.SetTrigger("Hide");
+            startMenuAnim.SetTrigger("Show");
+            SceneManager.LoadScene("Main");
+            player.respawn();
+            player.canMove = false;
+            startMenuObject.isActive = true;
+        }
+        else
+        {
+            startMenuAnim.SetTrigger("Show");
+            startMenuObject.isActive = true;
+            if (characterMenuObject.isActive)
+            {
+                mainMenuAnim.SetTrigger("Hide");
+                characterMenuObject.isActive = false;
+            }
+            if (optionsMenuObject.isActive)
+            {
+                optionsMenuAnim.SetTrigger("Hide");
+                optionsMenuObject.isActive = false;
+            }
+            if (controlsMenuObject.isActive)
+            {
+                controlsMenuAnim.SetTrigger("Hide");
+                controlsMenuObject.isActive = false;
+            }
+        }
+    }
+
+    public void showCharacterMenu()
+    {
+        mainMenuAnim.SetTrigger("Show");
+        characterMenuObject.updateMenu();
+        characterMenuObject.isActive = true;
+        Debug.Log("Why am i here");
+        if (startMenuObject.isActive){
+            startMenuAnim.SetTrigger("Hide");
+            startMenuObject.isActive = false;
+        }
+        if (optionsMenuObject.isActive)
+        {
+            optionsMenuAnim.SetTrigger("Hide");
+            startMenuObject.isActive = false;
+        }
+        if (controlsMenuObject.isActive)
+        {
+            controlsMenuAnim.SetTrigger("Hide");
+            startMenuObject.isActive = false;
+        }
+    }
+
+    public void hideCharacterMenu()
+    {
+        mainMenuAnim.SetTrigger("Hide");
+        characterMenuObject.isActive = false;
+    }
+
+    public void quitGame()
+    {
+        Application.Quit();
     }
 
 

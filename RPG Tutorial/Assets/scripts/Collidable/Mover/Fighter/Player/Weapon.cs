@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : Collidable
 {
     // Damage struct
-    public int[] damagePoint = { 1, 2, 3, 4, 5, 6, 7 };
+    public int[] damagePoint = { 1, 2, 4, 7, 11, 17, 25 };
     public float[] pushForce = { 2.0f, 2.2f, 2.4f, 2.6f, 2.8f, 3.0f, 3.5f};
 
     //Upgrade
@@ -28,9 +28,9 @@ public class Weapon : Collidable
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (Time.time - lastSwing > cooldown)
+            if (Time.time - lastSwing > cooldown && GameManager.instance.player.canMove)
             {
                 lastSwing = Time.time;
                 swing();

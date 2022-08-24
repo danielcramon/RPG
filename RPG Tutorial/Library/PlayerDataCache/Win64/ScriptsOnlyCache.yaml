@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - CameraMoter
     - CharacterMenu
     - Chest
+    - ControlsMenu
     - Crate
     - DontDestroy
     - Enemy
@@ -12,9 +13,12 @@ ScriptsOnlyBuild:
     - FloatingTextManager
     - GameManager
     - HealingFountain
+    - MenuManager
     - NPCTextPerson
+    - OptionsMenu
     - Player
     - Portal
+    - StartMenu
     - Weapon
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
@@ -34,10 +38,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -86,21 +88,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12292}
     - Class: 114
-      Script: {instanceID: 12882}
+      Script: {instanceID: 12884}
     - Class: 114
-      Script: {instanceID: 13354}
+      Script: {instanceID: 13356}
     - Class: 114
-      Script: {instanceID: 13484}
+      Script: {instanceID: 13486}
     - Class: 114
-      Script: {instanceID: 14016}
+      Script: {instanceID: 14024}
     - Class: 114
-      Script: {instanceID: 14218}
+      Script: {instanceID: 14226}
     - Class: 114
-      Script: {instanceID: 14304}
+      Script: {instanceID: 14312}
     - Class: 114
-      Script: {instanceID: 14390}
+      Script: {instanceID: 14398}
     - Class: 114
-      Script: {instanceID: 14402}
+      Script: {instanceID: 14410}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -165,23 +167,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12482}
     - Class: 114
-      Script: {instanceID: 12882}
+      Script: {instanceID: 12498}
     - Class: 114
-      Script: {instanceID: 13000}
+      Script: {instanceID: 12884}
     - Class: 114
-      Script: {instanceID: 13370}
+      Script: {instanceID: 13002}
     - Class: 114
-      Script: {instanceID: 13440}
+      Script: {instanceID: 13372}
     - Class: 114
-      Script: {instanceID: 13772}
+      Script: {instanceID: 13442}
     - Class: 114
-      Script: {instanceID: 14218}
+      Script: {instanceID: 13550}
     - Class: 114
-      Script: {instanceID: 14304}
+      Script: {instanceID: 13612}
     - Class: 114
-      Script: {instanceID: 14390}
+      Script: {instanceID: 13708}
     - Class: 114
-      Script: {instanceID: 14402}
+      Script: {instanceID: 13780}
+    - Class: 114
+      Script: {instanceID: 14226}
+    - Class: 114
+      Script: {instanceID: 14312}
+    - Class: 114
+      Script: {instanceID: 14398}
+    - Class: 114
+      Script: {instanceID: 14410}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -249,7 +259,7 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 5f8526a1f3767cbb5601da742d14b7b2
+      Hash: 9880df38b6d12e39e21e5ca514bebe99
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CharacterMenu
@@ -501,6 +511,12 @@ ScriptsOnlyBuild:
     className: DontDestroy
   - hash:
       serializedVersion: 2
+      Hash: 0d7d35aaa4958f7930711c0d987cbf96
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ControlsMenu
+  - hash:
+      serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -615,7 +631,7 @@ ScriptsOnlyBuild:
     className: ActivationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: e147e574884c42e88c755b37fcfd5046
+      Hash: 4d0fb2684617fc9c7656ba1edea73d6a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -645,10 +661,28 @@ ScriptsOnlyBuild:
     className: Boss
   - hash:
       serializedVersion: 2
+      Hash: 0d7d35aaa4958f7930711c0d987cbf96
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OptionsMenu
+  - hash:
+      serializedVersion: 2
+      Hash: 0d7d35aaa4958f7930711c0d987cbf96
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StartMenu
+  - hash:
+      serializedVersion: 2
       Hash: 6939772cb3ce775a8e8d99f332534491
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
+  - hash:
+      serializedVersion: 2
+      Hash: 5298be1e75f232209f565bf4c5c6381d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MenuManager
   - hash:
       serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
