@@ -13,6 +13,7 @@ public class CharacterMenu : MonoBehaviour
     public Image characterSelectionSprite;
     public Image weaponSprite;
     public RectTransform xpBar;
+    public bool isActive = false;
 
     // Character Selection
     public void onArrowClick(bool right)
