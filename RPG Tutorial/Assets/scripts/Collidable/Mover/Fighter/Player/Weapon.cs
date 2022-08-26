@@ -44,10 +44,11 @@ public class Weapon : Collidable
         {
             if (coll.name != "Player")
             {
+                float tempDamage = ((float)damagePoint[weaponLevel] / 100) * GameManager.instance.player.strength;
                 // Create a new damage object, then we'll send it to the fighter we've hit
                 Damage dmg = new Damage
                 {
-                    damageAmmount = damagePoint[weaponLevel],
+                    damageAmmount = (int) tempDamage,
                     origin = transform.position,
                     pushForce = pushForce[weaponLevel]
                 };

@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4327a91803177334fa89f14becc9280d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitpoint: 3
+  hitpoint: 15
   maxHitpoint: 3
   pushRecoverySpeed: 0.2
 --- !u!61 &1118040479216067912

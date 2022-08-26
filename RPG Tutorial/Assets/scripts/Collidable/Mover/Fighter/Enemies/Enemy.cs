@@ -94,6 +94,6 @@ public class Enemy : Mover
     {
         Destroy(gameObject);
         GameManager.instance.grantXp(xpValue);
-        GameManager.instance.showText("+" + xpValue + "XP", 30, Color.magenta, transform.position, Vector3.up * 40, 1.0f, false);
+        GameManager.instance.showText("+" + xpValue + "XP", 30, Color.magenta, transform.position + new Vector3(0, 0.16f, 0), Vector3.up * 25, 1.0f, false);
     }
 }
