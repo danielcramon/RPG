@@ -16,18 +16,6 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)){
-            /*if (!GameManager.instance.startMenuObject.isActive && GameManager.instance.optionsMenuObject.isActive)
-            {
-                GameManager.instance.returnFromOptions();
-            }
-            else if (!GameManager.instance.startMenuObject.isActive && GameManager.instance.controlsMenuObject.isActive)
-            {
-                GameManager.instance.returnFromControls();
-            }
-            else if (!GameManager.instance.startMenuObject.isActive)
-            {
-                GameManager.instance.showStartMenu();
-            }*/
             if (!GameManager.instance.startMenuObject.isActive)
             {
                 GameManager.instance.showStartMenu();
@@ -46,6 +34,17 @@ public class MenuManager : MonoBehaviour
             else
             {
                 GameManager.instance.hideCharacterMenu();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (!GameManager.instance.talentMenuObject.isActive)
+            {
+                GameManager.instance.showTalentMenu();
+            }
+            else
+            {
+                GameManager.instance.hideTalentMenu();
             }
         }
     }

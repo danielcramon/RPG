@@ -7,6 +7,9 @@ public class Player : Mover
     private SpriteRenderer spriteRenderer;
     public bool canMove;
     public bool isDead = false;
+    public int stamina = 10;
+    public int strength = 10;
+    public int talentPoints = 0;
     protected override void Start()
     {
         base.Start();
@@ -38,7 +41,22 @@ public class Player : Mover
     }
     public void onLevelUp()
     {
-        maxHitpoint = GameManager.instance.hitpoints[GameManager.instance.getCurrentLevel() - 1];
+        updateHitpoints();
+        hitpoint = maxHitpoint;
+        talentPoints++;
+        StartCoroutine(levelUpText());
+    }
+
+    IEnumerator levelUpText()
+    {
+        GameManager.instance.showText("LEVEL UP!", 25, Color.yellow, transform.position + new Vector3(0, 0.24f, 0), Vector3.up * 40, 1.5f, false);
+        yield return new WaitForSeconds(2);
+        GameManager.instance.showText("You gained a talent point. Click on the talent tree in the buttom left corner!", 15, Color.white, transform.position + new Vector3(0, 0.24f, 0), Vector3.zero, 4.0f, false);
+    }
+    public void setLevel()
+    {
+        float tempHitpoints = ((float)GameManager.instance.hitpoints[GameManager.instance.getCurrentLevel() - 1] / 100) * stamina;
+        maxHitpoint = (int)tempHitpoints;
         hitpoint = maxHitpoint;
     }
     public void heal(int healingAmmount)
@@ -73,5 +91,50 @@ public class Player : Mover
         lastImmune = Time.time;
         pushDirection = Vector3.zero;
         isDead = false;
+    }
+
+    private void updateHitpoints ()
+    {
+        if (hitpoint == maxHitpoint)
+        {
+            float tempHitpoints = ((float)GameManager.instance.hitpoints[GameManager.instance.getCurrentLevel() - 1] / 100) * stamina;
+            maxHitpoint = (int)tempHitpoints;
+            hitpoint = maxHitpoint;
+
+        }
+        else
+        {
+            float tempHitpoints = ((float)GameManager.instance.hitpoints[GameManager.instance.getCurrentLevel() - 1] / 100) * stamina;
+            maxHitpoint = (int)tempHitpoints;
+            if (hitpoint > maxHitpoint)
+            {
+                hitpoint = maxHitpoint;
+            }
+        }
+
+    }
+    public void addStamina()
+    {
+        stamina++;
+        talentPoints--;
+        updateHitpoints();
+        GameManager.instance.onHitpointChange();
+    }
+    public void addStrength()
+    {
+        strength++;
+        talentPoints--;
+    }
+    public void removeStamina()
+    {
+        stamina--;
+        talentPoints++;
+        updateHitpoints();
+        GameManager.instance.onHitpointChange();
+    }
+    public void removeStrength()
+    {
+        strength--;
+        talentPoints++;
     }
 }
