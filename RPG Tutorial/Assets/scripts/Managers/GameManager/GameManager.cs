@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
             Destroy(floatingTextManager.gameObject);
             Destroy(hud.gameObject);
             Destroy(menu.gameObject);
+            Destroy(talentMenu.gameObject);
+
             return;
         }
         instance = this;
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
     public RectTransform hitpointBar;
     public GameObject hud;
     public GameObject menu;
+    public GameObject talentMenu;
     public Animator deathMenuAnim;
     public Animator startMenuAnim;
     public Animator controlsMenuAnim;
