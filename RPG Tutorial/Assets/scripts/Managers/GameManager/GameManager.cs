@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
+        loadIntro();
+        if (introFinished)
+        {
+            SceneManager.LoadScene("HomeTown");
+        }
         SceneManager.sceneLoaded += onSceneLoaded;
         startMenuAnim.SetTrigger("Show");
         player.canMove = false;
@@ -35,6 +40,8 @@ public class GameManager : MonoBehaviour
     private bool gameLoaded = false;
     public List<int> bossDamages;
     public List<int> enemyDamages;
+    public bool introFinished = false;
+    private int introFinishedInt = 0;
 
 
     // References
@@ -49,10 +56,12 @@ public class GameManager : MonoBehaviour
     public Animator controlsMenuAnim;
     public Animator optionsMenuAnim;
     public Animator mainMenuAnim;
+    public Animator talentMenuAnim;
     public StartMenu startMenuObject;
     public OptionsMenu optionsMenuObject;
     public ControlsMenu controlsMenuObject;
     public CharacterMenu characterMenuObject;
+    public TalentMenu talentMenuObject;
 
     // Logic
     public int pesos;
@@ -88,6 +97,11 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void setIntroFinished()
+    {
+        introFinishedInt = 1;
     }
 
     // Hitpoint Bar
@@ -143,6 +157,7 @@ public class GameManager : MonoBehaviour
     {
         player.onLevelUp();
         onHitpointChange();
+        
     }
 
     //On Scene Loaded
@@ -155,7 +170,14 @@ public class GameManager : MonoBehaviour
     public void respawn()
     {
         deathMenuAnim.SetTrigger("Hide");
-        SceneManager.LoadScene("Main");
+        if (introFinished)
+        {
+            SceneManager.LoadScene("HomeTown");
+        }
+        else
+        {
+            SceneManager.LoadScene("Main");
+        }
         player.respawn();
     }
 
@@ -226,6 +248,11 @@ public class GameManager : MonoBehaviour
                 controlsMenuAnim.SetTrigger("Hide");
                 controlsMenuObject.isActive = false;
             }
+            if (talentMenuObject.isActive)
+            {
+                talentMenuAnim.SetTrigger("Hide");
+                talentMenuObject.isActive = false;
+            }
         }
     }
 
@@ -234,7 +261,6 @@ public class GameManager : MonoBehaviour
         mainMenuAnim.SetTrigger("Show");
         characterMenuObject.updateMenu();
         characterMenuObject.isActive = true;
-        Debug.Log("Why am i here");
         if (startMenuObject.isActive){
             startMenuAnim.SetTrigger("Hide");
             startMenuObject.isActive = false;
@@ -249,12 +275,49 @@ public class GameManager : MonoBehaviour
             controlsMenuAnim.SetTrigger("Hide");
             controlsMenuObject.isActive = false;
         }
+        if (talentMenuObject.isActive)
+        {
+            talentMenuAnim.SetTrigger("Hide");
+            talentMenuObject.isActive = false;
+        }
     }
 
     public void hideCharacterMenu()
     {
         mainMenuAnim.SetTrigger("Hide");
         characterMenuObject.isActive = false;
+    }
+
+    public void showTalentMenu()
+    {
+        talentMenuAnim.SetTrigger("Show");
+        talentMenuObject.updateMenu();
+        talentMenuObject.isActive = true;
+        if (startMenuObject.isActive)
+        {
+            startMenuAnim.SetTrigger("Hide");
+            startMenuObject.isActive = false;
+        }
+        if (optionsMenuObject.isActive)
+        {
+            optionsMenuAnim.SetTrigger("Hide");
+            optionsMenuObject.isActive = false;
+        }
+        if (controlsMenuObject.isActive)
+        {
+            controlsMenuAnim.SetTrigger("Hide");
+            controlsMenuObject.isActive = false;
+        }
+        if (characterMenuObject.isActive)
+        {
+            mainMenuAnim.SetTrigger("Hide");
+            characterMenuObject.isActive = false;
+        }
+    }
+    public void hideTalentMenu()
+    {
+        talentMenuAnim.SetTrigger("Hide");
+        talentMenuObject.isActive = false;
     }
 
     public void quitGame()
@@ -271,9 +334,28 @@ public class GameManager : MonoBehaviour
         s += "0" + "|";
         s += pesos.ToString() + "|";
         s += experience.ToString() + "|";
-        s += weapon.weaponLevel.ToString();
-
+        s += weapon.weaponLevel.ToString() +"|";
+        s += player.talentPoints.ToString() + "|";
+        s += talentMenuObject.strPoints.ToString() + "|";
+        s += talentMenuObject.stamPoints.ToString() + "|";
+        s += introFinishedInt.ToString();
+        
         PlayerPrefs.SetString("SaveState", s);
+    }
+
+    private void loadIntro()
+    {
+        if (!PlayerPrefs.HasKey("SaveState"))
+        {
+            return;
+        }
+        string[] data = PlayerPrefs.GetString("SaveState").Split('|');
+        // Intro
+        introFinishedInt = int.Parse(data[7]);
+        if (introFinishedInt == 1)
+        {
+            introFinished = true;
+        }
     }
     public void loadState()
     {
@@ -284,12 +366,21 @@ public class GameManager : MonoBehaviour
         }
         string[] data = PlayerPrefs.GetString("SaveState").Split('|');
 
-        // Change Player skin
+        // Player
         pesos = int.Parse(data[1]);
         experience = int.Parse(data[2]);
-        player.onLevelUp();
-        // Change Weapon level
+        player.setLevel();
+        player.talentPoints = int.Parse(data[4]);
+        talentMenuObject.strPoints = int.Parse(data[5]);
+        talentMenuObject.stamPoints = int.Parse(data[6]);
+        // Weapon
         weapon.setWeaponLevel(int.Parse(data[3]));
+        // Intro
+        introFinishedInt = int.Parse(data[7]);
+        if (introFinishedInt == 1)
+        {
+            introFinished = true;
+        }
         showText("The chest in the buttom left cornor is the menu button, press it to open the menu.", 15, Color.white, transform.position + new Vector3(0, 0.24f, 0), Vector3.zero, 6.0f, false);
         gameLoaded = true;
     }
